@@ -117,8 +117,6 @@ public class GUI {
         System.out.println("repaint called");
         for (int i = 0; i < 100; i++){
             JButton b = panels.get(i);
-            //System.out.println(b.hashCode());
-            //int res = p.isship(i);
             if (deck[i] == 0) b.setBackground(Color.BLUE);
             if (deck[i] == 1) b.setBackground(Color.GREEN);
             if (deck[i] == 2) b.setBackground(Color.RED);
