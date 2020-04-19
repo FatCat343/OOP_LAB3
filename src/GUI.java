@@ -27,6 +27,7 @@ public class GUI {
         textField2.setColumns(14); //ширина поля
         Controller c = new Controller();
         JButton start = new JButton("Start");
+        JButton score = new JButton("Highscore");
         start.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
@@ -36,10 +37,61 @@ public class GUI {
                 f.dispose();
             }
         });
+        score.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                JFrame f = new JFrame("HighScore");
+                JPanel panel = new JPanel();
+                //f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                JTextField textField = new JTextField();
+                textField.setBackground(Color.WHITE);
+                textField.setColumns(14); //ширина поля
+                String scoreline = Controller.getscore();
+                textField.setText(scoreline);
+                //textField.setText("score");
+                panel.add(textField);
+
+                f.getContentPane().add(panel);
+
+                f.setSize(400,400);
+                f.pack();
+                f.setLocationRelativeTo(null);
+                f.setVisible(true);
+            }
+        });
         panel.add(start);
+        panel.add(score);
         panel.add(textField1);
         panel.add(textField2);
 
+        f.getContentPane().add(panel);
+
+        f.setSize(400,400);
+        f.pack();
+        f.setLocationRelativeTo(null);
+        f.setVisible(true);
+    }
+    void newHighScore(int score){
+        JFrame f = new JFrame("HighScore");
+        JPanel panel = new JPanel();
+        //f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JTextField textField = new JTextField();
+        textField.setBackground(Color.WHITE);
+        textField.setColumns(14); //ширина поля
+        textField.setText("Enter Your name here");
+        panel.add(textField);
+        JButton ok = new JButton("ok");
+        ok.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                Controller.setscore(textField.getText() + " " + score);
+                f.setVisible(false); //you can't see me!
+                f.dispose();
+            }
+        });
+        panel.add(ok);
         f.getContentPane().add(panel);
 
         f.setSize(400,400);

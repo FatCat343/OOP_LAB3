@@ -111,6 +111,12 @@ abstract class player {
     void eog(player p){
         gui.finishwindow(p.getname() + " win!!!!");
         //gui.menu();
+        String score = Controller.getscore();
+        int turns = Controller.getturn();
+        int pturns = turns / 2 + turns % 2;
+        String[] parsedscore = score.split(" ");
+        int scoreturn = Integer.parseInt(parsedscore[1]);
+        if (scoreturn > pturns) gui.newHighScore(pturns);
         gui.closeframes(this);
         p.getgui().closeframes(p);
     }

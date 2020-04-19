@@ -2,7 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 class Listener implements ActionListener {
     private JButton but;
@@ -127,9 +131,35 @@ class MenuListener implements ActionListener {
 }
 public class Controller {
     private static player p1;
+    private static String score;
     private static  player p2;
     private static int ready = 0;
     private static int turns = 0;
+    static String getscore(){
+        try {
+            Scanner scan = new Scanner(new File("HighScores.txt"));
+            String scoreline;
+            scoreline = scan.nextLine();
+            score = scoreline;
+            System.out.println(score);
+        }
+        catch(FileNotFoundException err){
+            System.out.println("No file with Scores");
+        }
+        return score;
+    }
+    static void setscore(String newscore){
+        score = newscore;
+        try {
+            FileWriter out = new FileWriter("HighScores.txt");
+            out.write(newscore);
+            out.close();
+        }
+        catch(IOException err){
+            System.out.println("No file with Scores");
+        }
+
+    }
     static player getp1(){
         return p1;
     }
